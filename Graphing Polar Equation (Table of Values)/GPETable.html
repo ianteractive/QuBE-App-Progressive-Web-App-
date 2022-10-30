@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Graphing Polar Equation (Table)</title>
+
+    <style type="text/css">
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        body{
+            font-family:Arial, Helvetica, sans-serif;
+            background: url("../img/qubeBG.jpg") no-repeat fixed center;
+            background-color: #e9e9e9;
+            background-size: 100% 100%;
+        }
+        ion-icon{
+            cursor: pointer;
+            font-size: 19px;
+            color:rgb(60, 95, 24);
+        }
+        .button-comp{
+            width:97%;
+            height: 100px;
+            background: rgb(131, 204, 204);
+            box-shadow: 0 0 10px rgba(0, 0, 0, 1);
+            border-radius: 0.5em;
+            padding: 5px;
+            border: black solid 1px;
+            position: absolute;
+            place-items: center;
+            display: none;
+            margin-top: -15px;
+        }
+        button{
+            margin-top: 14px;
+            margin-left: 185px;
+            position:relative;
+            text-align: center;
+            box-shadow: 0px 4px 12px -4px rgba(0,0,0,0.35);
+            padding: 20px;
+            border: 1px #ffffff;
+            background-color: rgb(131, 204, 204);
+            cursor: pointer;
+            font-size:15px;
+        }
+        button:hover, button:focus, button:active{
+            box-shadow: 0 0 10px rgba(0,0,0,0.5);
+            -webkit-transform: scale(1.1);
+            transform: scale(1.1);
+        }
+        .hi{
+            margin-left: 125px;
+            width: 80%;
+            position: absolute;
+            display: none;
+        }
+        .hi1{
+            width: 98.5%;
+            position: absolute;
+            display: none;
+        }
+        #btnss{
+            margin-top: 140px;
+            position:absolute;
+            display: none;
+        }
+        .d-o{
+            position:absolute;
+            margin-left: 8px;
+        }
+        canvas {
+            margin-top: 200px;
+        }
+        .tools {
+            justify-content: center;
+            margin-top: 5px;
+            margin-left: 30%;
+        }
+        .tools .color-field {
+            min-width: 20px;
+            min-height: 20px;
+            cursor: pointer;
+            display: inline-block;
+            box-sizing: border-box;
+            border: 1px black solid;
+            border-radius: 5px;
+        }
+        .tools .pencil {
+            min-width: 20px;
+            min-height: 20px;
+            cursor: pointer;
+            display: inline-block;
+            box-sizing: border-box;
+        }
+        .color-field img {
+            width: 23px;
+            margin: 0;
+        }
+        .pencil img {
+            width: 22px;
+            padding-right: 4px;
+        }
+        .tools .button {
+            align-self: center;
+            width: 100px;
+            height: 40px;
+            border: 2px solid #222;
+            cursor: pointer;
+            color: white;
+            background: teal;
+            margin: 0;
+            padding: 0;
+            border-radius: 5px;
+        }
+ 
+        #img-home {
+            width: 50px;
+            height: 50px;
+        }
+        #img-home:hover {
+            box-shadow: 0 0 2px 2px;
+            border-radius: 50px;
+        }
+        #design-box {
+            font-family: Arial, Helvetica, sans-serif;
+            border: solid 2px #000;
+            border-radius: 15px;
+            background-color: #fff;
+            padding: 20px;
+            text-decoration: none;
+            margin-top: 10px;
+        }
+        .tools1 {
+            justify-content: center;
+            margin-top: 5px;
+            margin-left: 39%;
+        }
+        #download3 {
+            width: 50px;
+            height: 50px;
+            float: right;
+            margin-top: -40px;
+
+        }
+		#download3:hover {
+            box-shadow: 0 0 2px 2px;
+			color: teal;
+			cursor: pointer;
+        }
+        .h1{
+            position:absolute;
+            display: none;
+            cursor: pointer;
+            width: 50px;
+            height: 50px;
+        }
+        .h1:hover {
+            box-shadow: 0 0 2px 2px;
+            color: teal;
+            cursor: pointer;
+        }
+        #navbar {
+            background-color: #3d3d3d;
+            color: white;
+        }
+        #navbar ul {
+            list-style: none;
+            position: relative;
+        }
+
+        #navbar li {
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 14px;
+            display: inline;
+            margin: 5px;
+            padding: 10px;
+        }
+
+        #navbar a {
+            text-decoration: none;
+            color: white;
+            padding-right: 10px; 
+        }
+        #active1 {
+          background-color: rgb(75, 75, 75);
+          border-radius: 6px;
+          color: rgb(134, 218, 218);
+        }
+        #navbar li:hover {
+            background-color: rgb(75, 75, 75);
+            border-radius: 6px;
+            color: rgb(134, 218, 218);
+        }
+        .container {
+            width: 70%;
+            margin: auto;
+            overflow: hidden;
+            padding: 12px;
+        }
+        .brsmall {
+            display: block;
+            margin-bottom: .4em;
+        }
+        .navimg2 {
+          margin: -5px;
+          width: 25px;
+          height: 25px;
+          margin-right: 15px;
+          }
+          .navimg2:hover, .navimg2:focus, .navimg2:active{
+            box-shadow: 0 0 10px rgba(0,0,0,0.5);
+            -webkit-transform: scale(1.1);
+            transform: scale(1.1);
+        }
+          input[type="range"] {
+            cursor: move; 
+            cursor: grab;
+            cursor: -moz-grab;
+            cursor: -webkit-grab;
+            }
+
+            input[type="range"]:active {
+            cursor: grabbing;
+            cursor: -moz-grabbing;
+            cursor: -webkit-grabbing;
+            }
+
+            input[type="color"]{
+            cursor: crosshair;
+            }
+
+    </style>
+</head>
+<body>
+    <nav id="navbar">
+      <div class="container">
+        <ul>
+            <a href="../index.html"><img class="navimg2" src="../img/QLogo192.png" alt="" title="Home"></a>
+            <a href="../whiteboard.html"><li>Whiteboard</li></a>
+            <a href="../Custom Table/CustomTable.html"><li>Custom Tables</li></a>
+            <a href="../Truth Table/tablegnrtr.html"><li>Truth Table Generator</li></a>
+            <a href="../Binary to Decimal/Bin2dec.html"><li>Binary2Decimal</li></a>
+            <a href="../Graphing Polar Equation (Table of Values)/GPETable.html"><li id="active1">Graphing Polar Equation</li></a>
+            <a href="../Calendar/MyFirstSchedule.html"><li>Task Management</li></a>
+        </ul>
+      </div>
+  </nav>
+    <div id="hidd">
+    <div id="design-box">
+    <p><big>Graphing Polar Equation (Table of Values)</big>
+        &nbsp;
+        <ion-icon class="icn" name="chevron-down-circle-outline" onclick="menu1()"></ion-icon>
+        <div id="download3">
+        <img name="download-outline" id="dd30" class="h1" src="../img/download.png" alt="">
+        <img name="download-outline" id="dd24" class="h1" src="../img/download.png" alt="">
+        <img name="download-outline" id="dr30" class="h1" src="../img/download.png" alt="">
+        <img name="download-outline" id="dr24" class="h1" src="../img/download.png" alt="">
+        </div>
+        <br>
+        <hr>
+        <br>
+    </p>
+            <img src="D30.jpg" alt="" class="hi" id="d30">
+            <img src="D24.jpg" alt="" class="hi1" id="d24">
+            <img src="R30.jpg" alt="" class="hi" id="r30">
+            <img src="R24.jpg" alt="" class="hi1" id="r24">
+    
+
+    <div class="button-comp" id="btn-comp">
+        <button onclick="D30()">Degree Form<br>30°</button>
+        <button onclick="D24()">Degree Form<br>24°</button>
+        <button onclick="R30()">Radian Form<br>30°</button>
+        <button onclick="R24()">Radian Form<br>24°</button>
+    </div>
+    <p id="choose">Choose from 24°/30° interval and degree/radian form</p>
+    </div>
+    </div>
+    <canvas id="canvas"></canvas>
+    <div class="tools1">
+       <label for="uploader">Select File</label>
+       <input type="file" id="uploader">
+    </div>
+       <div class="tools">
+            <button onClick="undo_last()" type="button" class="button" title="Ctrl + Z">Undo</button>
+            <button onClick="clear_canvas()" type="button" class="button" title="Ctrl + Q">Clear</button>
+            <button id="hidebtn" type="button" class="button">Hide</button>
+            <button id="unhidebtn" type="button" class="button">Unhide</button>
+            <div class="pencil"><img src="../img/pen.png" alt="" onClick="draw_color = 'black'" type="color" class="color-picker" title="Pen"><input onInput="draw_color = this.value" type="color" class="color-picker" title="Color Picker"></div>
+            <div onClick="change_color(this)" class="color-field" title="Eraser" style="background: rgb(255, 255, 255);"><img src="../img/eraser.png" alt=""></div>
+
+            
+            <input onInput="draw_width = this.value" type="range" min="1" max="10" value="2" class="pen-range" title="Stroke Width">
+       </div>
+
+    
+
+    <script>
+
+        document.getElementById("hidebtn").onclick = function(){
+                document.getElementById("hidd").style.display = "none";
+                }
+                document.getElementById("unhidebtn").onclick = function(){
+                document.getElementById("hidd").style.display = "inline";
+                }
+                var b=1;
+        document.getElementById("hidd").style.display="inline";
+        function hide(){
+            b+=1;
+            if (b==0){
+                document.getElementById("hidd").style.display="none";
+                return b=0;
+            } else {
+                document.getElementById("hidd").style.display="inline";
+                return b=1;
+            }
+        }
+        const canvas = document.getElementById('canvas');
+           const ctx = canvas.getContext('2d');
+
+           const reader = new FileReader();
+           const img = new Image();
+
+           const uploadImage = (e) => {
+               reader.onload = () => {
+                   img.onload = () => {
+                       canvas.width = img.width;
+                       canvas.height = img.height;
+                       ctx.drawImage(img, 0, 0);
+                   };
+                   img.src = reader.result;
+               };
+               reader.readAsDataURL(e.target.files[0])
+           };
+           const imageLoader = document.getElementById('uploader');
+           imageLoader.addEventListener('change', uploadImage); 
+
+           let draw_color = "black";
+           let draw_width = "2";
+           let is_drawing = false;
+
+           let restore_array = [];
+           let index = -1;
+
+           canvas.addEventListener("touchstart", start, false);
+           canvas.addEventListener("touchmove", draw, false);
+           canvas.addEventListener("mousedown", start, false);
+           canvas.addEventListener("mousemove", draw, false);
+           
+           canvas.addEventListener("touchend", stop, false);
+           canvas.addEventListener("mouseup", stop, false);
+           canvas.addEventListener("mouseout", stop, false);
+
+
+
+           function start(event) {
+               is_drawing = true;
+               ctx.beginPath();
+               ctx.moveTo(event.clientX - canvas.offsetLeft, event.clientY - canvas.offsetTop);
+               event.preventDefault();
+           }
+
+           function draw(event){
+               if(is_drawing) {
+                   ctx.lineTo(event.clientX - canvas.offsetLeft, event.clientY - canvas.offsetTop);
+                   ctx.strokeStyle = draw_color;
+                   ctx.lineWidth = draw_width;
+                   ctx.lineCap = "round";
+                   ctx.lineJoin = "round";
+                   ctx.stroke();
+               }
+           }
+
+           function stop(event) {
+               if(is_drawing){
+                   ctx.stroke();
+                   ctx.closePath();
+                   is_drawing = false;
+               }
+               event.preventDefault();
+            
+               if(event.type != 'mouseout'){
+                restore_array.push(ctx.getImageData(0, 0, canvas.width, canvas.height));
+                index += 1;
+               }
+               
+           }
+
+           function change_color(element) {
+                draw_color =element.style.background;
+           }
+
+           function clear_canvas(){
+               ctx.clearRect(0, 0, canvas.width, canvas.height);
+               restore_array = [];
+               index = -1;
+               document.location.reload(true);
+           }
+
+           function undo_last(){
+                if( index <= 0 ){
+                    clear_canvas();
+                } else {
+                    index -= 1;
+                    restore_array.pop();
+                    ctx.putImageData(restore_array[index], 0, 0);
+                }
+           }
+        function D30(){
+            document.getElementById("choose").style.display="none";
+            document.getElementById("d30").style.display="inline";
+            document.getElementById("d24").style.display="none";
+            document.getElementById("r30").style.display="none";
+            document.getElementById("r24").style.display="none";
+            document.getElementById("dd30").style.display="inline";
+            document.getElementById("dd24").style.display="none";
+            document.getElementById("dr30").style.display="none";
+            document.getElementById("dr24").style.display="none";
+            document.getElementById("btn-comp").style.display="none";
+            document.getElementById("btnss").style.display="inline";
+            return a=0;
+
+        }
+        function D24(){
+            document.getElementById("choose").style.display="none";
+            document.getElementById("d30").style.display="none";
+            document.getElementById("d24").style.display="inline";
+            document.getElementById("r30").style.display="none";
+            document.getElementById("r24").style.display="none";
+            document.getElementById("dd30").style.display="none";
+            document.getElementById("dd24").style.display="inline";
+            document.getElementById("dr30").style.display="none";
+            document.getElementById("dr24").style.display="none";
+            document.getElementById("btn-comp").style.display="none";
+            document.getElementById("btnss").style.display="inline";
+            return a=0;
+        }
+        function R30(){
+            document.getElementById("choose").style.display="none";
+            document.getElementById("d30").style.display="none";
+            document.getElementById("d24").style.display="none";
+            document.getElementById("r30").style.display="inline";
+            document.getElementById("r24").style.display="none";
+            document.getElementById("dd30").style.display="none";
+            document.getElementById("dd24").style.display="none";
+            document.getElementById("dr30").style.display="inline";
+            document.getElementById("dr24").style.display="none";
+            document.getElementById("btn-comp").style.display="none";
+            document.getElementById("btnss").style.display="inline";
+            return a=0;
+        }
+        function R24(){
+            document.getElementById("choose").style.display="none";
+            document.getElementById("d30").style.display="none";
+            document.getElementById("d24").style.display="none";
+            document.getElementById("r30").style.display="none";
+            document.getElementById("r24").style.display="inline";
+            document.getElementById("dd30").style.display="none";
+            document.getElementById("dd24").style.display="none";
+            document.getElementById("dr30").style.display="none";
+            document.getElementById("dr24").style.display="inline";
+            document.getElementById("btn-comp").style.display="none";
+            document.getElementById("btnss").style.display="inline";
+            return a=0;
+        }
+        let a=0;
+        function menu1(){
+            a+=1;
+            if (a==1){
+                document.getElementById("btn-comp").style.display="inline";
+                return a=1;
+            } else {
+                document.getElementById("btn-comp").style.display="none";
+                return a=0;
+            }
+        }
+        
+        document.getElementById("dd30").onclick = function (){
+          const screenshotTarget = document.getElementById('d30');
+
+          html2canvas(screenshotTarget).then((canvas)=> {
+              const base64image = canvas.toDataURL("image/png");
+              var anchor = document.createElement('a');
+              anchor.setAttribute("href", base64image);
+              anchor.setAttribute("download", "tableGPE1.png");
+              anchor.click();
+              anchor.remove();
+          });
+        };
+
+        document.getElementById("dd24").onclick = function (){
+          const screenshotTarget = document.getElementById('d24');
+
+          html2canvas(screenshotTarget).then((canvas)=> {
+              const base64image = canvas.toDataURL("image/png");
+              var anchor = document.createElement('a');
+              anchor.setAttribute("href", base64image);
+              anchor.setAttribute("download", "tableGPE2.png");
+              anchor.click();
+              anchor.remove();
+          });
+        };
+
+        document.getElementById("dr30").onclick = function (){
+          const screenshotTarget = document.getElementById('r30');
+
+          html2canvas(screenshotTarget).then((canvas)=> {
+              const base64image = canvas.toDataURL("image/png");
+              var anchor = document.createElement('a');
+              anchor.setAttribute("href", base64image);
+              anchor.setAttribute("download", "tableGPE3.png");
+              anchor.click();
+              anchor.remove();
+          });
+        };
+
+        document.getElementById("dr24").onclick = function (){
+          const screenshotTarget = document.getElementById('r24');
+
+          html2canvas(screenshotTarget).then((canvas)=> {
+              const base64image = canvas.toDataURL("image/png");
+              var anchor = document.createElement('a');
+              anchor.setAttribute("href", base64image);
+              anchor.setAttribute("download", "tableGPE4.png");
+              anchor.click();
+              anchor.remove();
+          });
+        };
+        document.addEventListener("keydown", e=> {
+                if (e.key.toLowerCase() ==="z" && e.key.toUpperCase() ==="Z" && e.ctrlKey) {
+                    undo_last();
+                }
+                if (e.key.toLowerCase() ==="q" && e.key.toUpperCase() ==="Q" && e.ctrlKey) {
+                    clear_canvas();
+                }
+            })
+    </script>
+    <script src="html2canvas.min.js"></script>
+
+
+
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+</body>
+</html>

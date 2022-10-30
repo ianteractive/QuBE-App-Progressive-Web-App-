@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style type="text/css">
+        *{
+            padding: 0;
+            margin: 0;    
+        }
+        body{
+            font-family: Arial, Helvetica, sans-serif;
+            background: url("../img/qubeBG.jpg") no-repeat fixed center;
+            background-color: #e9e9e9;
+            background-size: 100% 100%;
+        }
+        table{
+            margin-left: 20px;
+        }
+        .tble{
+            border:1px solid black;
+            border-collapse: collapse;
+            background-color: rgb(242, 253, 253);
+        }
+        .tblee{
+            background-color:rgb(252, 253, 242);
+            margin-top: 20px;
+            border: 0.5px solid black;
+        }
+        .btn-revealans{
+            margin: auto;
+            border: 1px solid rgb(44, 21, 21);
+            background : rgb(170, 240, 240);
+            width: 75px;
+            height: 30px;
+            text-align: center;
+            color:black;
+            border-radius: 5px;
+            cursor: pointer;
+            box-shadow: 0 0 10px rgb(0,0,0,0.1);
+            -webkit-transition-duration: 0.3s;
+            transition-duration: 0.3s;
+            -webkit-transition-property: box-shadow, transform;
+            transition-property: box-shadow, transform;
+        }
+        button:hover, button:focus, button:active{
+            box-shadow: 0 0 10px rgba(0,0,0,0.5);
+            -webkit-transform: scale(1.1);
+            transform: scale(1.1);
+        }
+        .tbb{
+            margin: auto;
+            border: 1px solid rgb(0, 23, 114);
+            background : teal;
+            width: 100px;
+            height: 30px;
+            text-align: center;
+            color:#fff;
+            border-radius: 5px;
+            cursor: pointer;
+            box-shadow: 0 0 10px rgb(0,0,0,0.1);
+            -webkit-transition-duration: 0.3s;
+            transition-duration: 0.3s;
+            -webkit-transition-property: box-shadow, transform;
+            transition-property: box-shadow, transform;
+        }
+        ion-icon{
+            font-size: 18px;
+            color:#004933;
+            cursor: pointer;
+        }
+        .b2d{
+            width: 100%;
+            border-radius: inherit;
+        }
+        #container{
+            width: 67%;
+            position:absolute;
+            margin-left: 333px;
+            margin-top: -10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.5);
+            border-radius: 1em;
+        }
+        canvas {
+            margin-top: 0px;
+        }
+        .tools {
+            justify-content: center;
+            margin-top: 25px;
+            margin-left: 30%;
+        }
+        .tools .color-field {
+            min-width: 20px;
+            min-height: 20px;
+            cursor: pointer;
+            display: inline-block;
+            box-sizing: border-box;
+            border: 1px black solid;
+            border-radius: 5px;
+        }
+        .tools .pencil {
+            min-width: 20px;
+            min-height: 20px;
+            cursor: pointer;
+            display: inline-block;
+            box-sizing: border-box;
+        }
+        .color-field img {
+            width: 23px;
+            margin: 0;
+        }
+        .pencil img {
+            width: 22px;
+            padding-right: 4px;
+        }
+        .tools .button {
+            align-self: center;
+            width: 100px;
+            height: 40px;
+            border: 2px solid #222;
+            cursor: pointer;
+            color: white;
+            background: teal;
+            border-radius: 5px;
+        }
+        .tools1 {
+            justify-content: center;
+            margin-top: 25px;
+            margin-left: 39%;
+        }
+        .container {
+            width: 98%;
+            margin: auto;
+        }
+        #img-home {
+            width: 50px;
+            height: 50px;
+        }
+        #img-home:hover {
+            box-shadow: 0 0 2px 2px;
+            border-radius: 50px;
+        }
+        #design-box {
+            font-family: Arial, Helvetica, sans-serif;
+            border: solid 2px #000;
+            border-radius: 15px;
+            background-color: #fff;
+            padding: 20px;
+            text-decoration: none;
+            margin-top: 10px;
+        }
+        #download1 {
+            width: 50px;
+            height: 50px;
+            float: right;
+            margin-top: -60px;
+        }
+		#download1:hover {
+            box-shadow: 0 0 2px 2px;
+			color: teal;
+			cursor: pointer;
+        }
+        #navbar {
+            background-color: #3d3d3d;
+            color: white;
+        }
+        #navbar ul {
+            list-style: none;
+            position: relative;
+        }
+
+        #navbar li {
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 14px;
+            display: inline;
+            margin: 5px;
+            padding: 10px;
+        }
+
+        #navbar a {
+            text-decoration: none;
+            color: white;
+            padding-right: 10px; 
+        }
+        #active1 {
+          background-color: rgb(75, 75, 75);
+          border-radius: 6px;
+          color: rgb(134, 218, 218);
+        }
+        #navbar li:hover {
+            background-color: rgb(75, 75, 75);
+            border-radius: 6px;
+            color: rgb(134, 218, 218);
+        }
+        .container {
+            width: 70%;
+            margin: auto;
+            overflow: hidden;
+            padding: 12px;
+        }
+        .brsmall {
+            display: block;
+            margin-bottom: .4em;
+        }
+        .navimg2 {
+          margin: -5px;
+          width: 25px;
+          height: 25px;
+          margin-right: 15px;
+           
+          }
+          .navimg2:hover, .navimg2:focus, .navimg2:active{
+            box-shadow: 0 0 10px rgba(0,0,0,0.5);
+            -webkit-transform: scale(1.1);
+            transform: scale(1.1);
+        }
+          #helpp{
+              cursor: help;
+          }
+          input[type="range"] {
+            cursor: move; 
+            cursor: grab;
+            cursor: -moz-grab;
+            cursor: -webkit-grab;
+            }
+
+            input[type="range"]:active {
+            cursor: grabbing;
+            cursor: -moz-grabbing;
+            cursor: -webkit-grabbing;
+            }
+
+            input[type="color"]{
+            cursor: crosshair;
+            }
+    </style>
+    <title>Binary 2 Decimal</title>
+</head>
+
+<body>
+
+    <nav id="navbar">
+      <div class="container">
+        <ul>
+            <a href="../index.html"><img class="navimg2" src="../img/QLogo192.png" alt="" title="Home"></a>
+            <a href="../whiteboard.html"><li>Whiteboard</li></a>
+            <a href="../Custom Table/CustomTable.html"><li>Custom Tables</li></a>
+            <a href="../Truth Table/tablegnrtr.html"><li>Truth Table Generator</li></a>
+            <a href="../Binary to Decimal/Bin2dec.html"><li id="active1">Binary2Decimal</li></a>
+            <a href="../Graphing Polar Equation (Table of Values)/GPETable.html"><li>Graphing Polar Equation</li></a>
+            <a href="../Calendar/MyFirstSchedule.html"><li>Task Management</li></a>
+        </ul>
+      </div>
+  </nav>
+    <div id="main">
+
+    <div id="design-box">
+        <p><big>Binary to Decimal (Table Discussion)</big>&nbsp;
+            
+            <ion-icon name="help-circle-outline" id="helpp" onclick="help1()"></ion-icon>
+            <div id="container"><img class="b2d" src="Bin2Dec.jpg" alt=""></div></p><br>
+        
+        <label>Binary number: </label>
+        <input id="binary" type="text" maxlength="8" placeholder="Insert">&nbsp;
+        <button onclick="tablebin(binary)" class="tbb">Create Table</button>&nbsp;
+        <button onClick="binaryToDecimalConverter(binary)" type="button" class="btn-revealans">Reveal</button>
+        <img name="download-outline" id="download1" src="../img/download.png" alt="" title="Download">
+    </div>
+    </div>
+
+        
+        <div id="result"> </div>
+        <canvas id="canvas"></canvas>
+        <div class="tools1">
+       <label for="uploader">Select File</label>
+       <input type="file" id="uploader">
+        </div>
+       <div class="tools">
+            <button onClick="undo_last()" type="button" class="button"  title="Ctrl + Z">Undo</button>
+            <button onClick="clear_canvas()" type="button" class="button" Ctrl + Q>Clear</button>
+            <button id="hidebtn" type="button" class="button">Hide</button>
+            <button id="unhidebtn" type="button" class="button">Unhide</button>
+            <div class="pencil"><img src="../img/pen.png" alt="" onClick="draw_color = 'black'" type="color" class="color-picker" title="Pen"><input onInput="draw_color = this.value" type="color" class="color-picker" title="Color Picker"></div>
+            <div onClick="change_color(this)" class="color-field" title="Eraser" style="background: rgb(255, 255, 255);"><img src="../img/eraser.png" alt=""></div>
+
+            
+            <input onInput="draw_width = this.value" type="range" min="1" max="10" value="2" class="pen-range" title="Stroke Width">
+       </div>
+
+      <script>
+
+          document.getElementById("hidebtn").onclick = function(){
+                document.getElementById("main").style.display = "none";
+                }
+                document.getElementById("unhidebtn").onclick = function(){
+                document.getElementById("main").style.display = "inline";
+                }
+          const canvas = document.getElementById('canvas');
+           const ctx = canvas.getContext('2d');
+
+           const reader = new FileReader();
+           const img = new Image();
+
+           const uploadImage = (e) => {
+               reader.onload = () => {
+                   img.onload = () => {
+                       canvas.width = img.width;
+                       canvas.height = img.height;
+                       ctx.drawImage(img, 0, 0);
+                   };
+                   img.src = reader.result;
+               };
+               reader.readAsDataURL(e.target.files[0])
+           };
+           const imageLoader = document.getElementById('uploader');
+           imageLoader.addEventListener('change', uploadImage); 
+
+           let draw_color = "black";
+           let draw_width = "2";
+           let is_drawing = false;
+
+           let restore_array = [];
+           let index = -1;
+
+           canvas.addEventListener("touchstart", start, false);
+           canvas.addEventListener("touchmove", draw, false);
+           canvas.addEventListener("mousedown", start, false);
+           canvas.addEventListener("mousemove", draw, false);
+           
+           canvas.addEventListener("touchend", stop, false);
+           canvas.addEventListener("mouseup", stop, false);
+           canvas.addEventListener("mouseout", stop, false);
+
+
+
+           function start(event) {
+               is_drawing = true;
+               ctx.beginPath();
+               ctx.moveTo(event.clientX - canvas.offsetLeft, event.clientY - canvas.offsetTop);
+               event.preventDefault();
+           }
+
+           function draw(event){
+               if(is_drawing) {
+                   ctx.lineTo(event.clientX - canvas.offsetLeft, event.clientY - canvas.offsetTop);
+                   ctx.strokeStyle = draw_color;
+                   ctx.lineWidth = draw_width;
+                   ctx.lineCap = "round";
+                   ctx.lineJoin = "round";
+                   ctx.stroke();
+               }
+           }
+
+           function stop(event) {
+               if(is_drawing){
+                   ctx.stroke();
+                   ctx.closePath();
+                   is_drawing = false;
+               }
+               event.preventDefault();
+            
+               if(event.type != 'mouseout'){
+                restore_array.push(ctx.getImageData(0, 0, canvas.width, canvas.height));
+                index += 1;
+               }
+               
+           }
+
+           function change_color(element) {
+                draw_color =element.style.background;
+           }
+
+           function clear_canvas(){
+               ctx.clearRect(0, 0, canvas.width, canvas.height);
+               restore_array = [];
+               index = -1;
+               document.location.reload(true);
+           }
+
+           function undo_last(){
+                if( index <= 0 ){
+                    clear_canvas();
+                } else {
+                    index -= 1;
+                    restore_array.pop();
+                    ctx.putImageData(restore_array[index], 0, 0);
+                }
+           }
+
+        function tablebin(binary){
+            let variable = document.getElementById('binary').value;
+            let resultField;
+
+            for (let i=variable.length-1; i>=0; i--){
+                if (variable.charAt(i) !== "1") {
+                     if (variable.charAt(i) !== "0") {
+                        return resultField = alert(`You can't enter other characters than 0 and 1!`)
+                        console.log(resultField);
+                    }
+                }
+            }
+            t = "<br><table class='tble' border='1px' height='500' width='500'>";
+            for(var i = 0; i<variable.length; i++){
+                t +="<tr>";
+                for(var j=0; j<3; j++){
+                    if (j===2 && i===variable.length-1)
+                    {
+                        t+= "<table class='tblee' height='50' width='200'> <tr> <td> Answer:  </td> </tr> </table>";
+
+                    } else
+                    t+= "<td>  </td>";
+                    
+                }
+                t += "</tr>";
+            }
+            t+="</table><br>";
+            document.getElementById("result").innerHTML= t;
+        }
+    
+
+        function binaryToDecimalConverter(binary) {
+        let variable = document.getElementById('binary').value;
+        let resultField;
+
+        let dec = 0;
+        let counter = 1;
+
+        for (let i=variable.length-1; i>=0; i--) {
+            
+            if (variable.charAt(i) !== "1") {
+                if (variable.charAt(i) !== "0") {
+                    return resultField = alert(`You can't enter other characters than 0 and 1!`)
+                    console.log(resultField);
+                }
+            }
+
+            dec += variable.charAt(i) * counter
+            counter *= 2
+        }
+        return resultField = confirm(`Result: ${dec}`)
+        console.log(resultField);
+        }
+
+        var a=0;
+        document.getElementById("container").style.display="none";
+        function help1(){
+            a+=1;
+            if (a==1){
+                document.getElementById("container").style.display="inline";
+                return a=1;
+            } else {
+                document.getElementById("container").style.display="none";
+                return a=0;
+            }
+        }
+        document.addEventListener("keydown", e=> {
+                if (e.key.toLowerCase() ==="z" && e.key.toUpperCase() ==="Z" && e.ctrlKey) {
+                    undo_last();
+                }
+                if (e.key.toLowerCase() ==="q" && e.key.toUpperCase() ==="Q" && e.ctrlKey) {
+                    clear_canvas();
+                }
+            })
+      </script>
+      <script src="html2canvas.min.js"></script>
+      <script>
+          document.getElementById("download1").onclick = function (){
+            const screenshotTarget = document.getElementById('result');
+
+            html2canvas(screenshotTarget).then((canvas)=> {
+                const base64image = canvas.toDataURL("image/png");
+                var anchor = document.createElement('a');
+                anchor.setAttribute("href", base64image);
+                anchor.setAttribute("download", "tableB2D.png");
+                anchor.click();
+                anchor.remove();
+            });
+          };
+      </script>
+      
+      <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+      <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+</body>
+</html>
